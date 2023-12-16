@@ -33,6 +33,8 @@ include('config.php');
                     <th scope="col">Category</th>
                     <th scope="col">Price</th>
                     <th scope="col">Image</th>
+                    <th scope="col">Update</th>
+                    <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,7 +49,9 @@ include('config.php');
                     <td><?php echo $row['pdescription']?> </td>
                     <td><?php echo $row['pcategory']?> </td>                  
                     <td><?php echo $row['price']?> </td>
-                    <td><?php echo <img src=" $row['image'] " alt="">?></td>
+                    <td><img src=" <?php echo 'img/'.$row['image'] ?> "alt="" height="50px" width="50px" ></td>  
+                    <td ><a href="update.php?id=<?php echo $row['id'] ?>" class="btn btn-success"><i class="fa-solid fa-file-pen" style="color: #eb0000;"></i></a></td>
+                    <td ><a href="delete.php?id=<?php echo $row['id'] ?> " class="btn btn-danger"><i class="fa-sharp fa-solid fa-trash" style="color: #1ae40c;"></i></a></td>              
                 </tr>
                 <?php 
                 } } }

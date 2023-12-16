@@ -77,7 +77,7 @@
             <a class="collapse-item" href="viewcat.php">View Category</a>
             <div class="collapse-divider"></div>
             <a class="collapse-item" href="addproduct.php">Add Product</a>
-            <a class="collapse-item" href="viewcat.php">view Product</a>
+            <a class="collapse-item" href="viewpro.php">view Product</a>
         </div>
     </div>
 </li>

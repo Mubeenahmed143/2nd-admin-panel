@@ -1,46 +1,35 @@
-<?php
+<?php 
 include('includes/header.php');
 include('includes/sidebar.php');
 include('includes/topbar.php');
 include('config.php');
 
 
+if(isset($_GET['id'])){
+    $id = $_GET['id'];
 
-if (isset($_POST['addcat'])) {
-    $catname = $_POST['catname'];
-
-    $insertcat = "INSERT INTO `category` (`catname`) VALUES ('$catname')";
-    $result = mysqli_query($connection, $insertcat);
+    $fetch_pro = "SELECT * from `addproduct` where `pid` = '$id'";
+    $result = mysqli_query($connection,$fetch_pro);
     if($result){
-        echo '<script>
-        alert("category inserted");
-        window.location.href="addproduct.php"
-        </script>';
-    }
-   
-}
+        if(mysqli_num_rows($result) > 0){
+
+
 
 ?>
 
 
 <div class="container">
 
+<?php 
+
+  while($row = mysqli_fetch_assoc($result)){
+
+  
+?>
+
     <!-- Outer Row -->
     <div class="row justify-content-center">
 
-        <!-- Add Category -->
-
-        <form class="user" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
-            <div class="form-group row">
-                <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Category Name" name="catname" required>
-                </div>
-                <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="submit" class="btn btn-primary btn-user btn-block" name="addcat" value="Add Category">
-                </div>
-
-            </div>
-        </form>
 
         <!-- Add Product Program -->
         <div class="col-xl-10 col-lg-12 col-md-9">
@@ -96,48 +85,9 @@ if (isset($_POST['addcat'])) {
 
 </div>
 
-
-<!-- add product PHP -->
-
 <?php 
-if(isset($_POST['addproduct'])){
-    $pname = $_POST['pname'];
-    $pdes = $_POST['pdes'];
-    $pcat = $_POST['category'];
-    $price = $_POST['pprice'];
-    $pimage_name = $_FILES['pimage']['name'];
-    $pimage_tmp_name = $_FILES['pimage']['tmp_name'];
-
-    $insert_product = "INSERT INTO `addproduct` (`pid`, `pname`, `pdescription`, `pcategory`, `price`, `image`) VALUES (NULL, '$pname', '$pdes', '$pcat', '$price', '$pimage_name')";
-    $result = mysqli_query($connection, $insert_product);
-    move_uploaded_file($pimage_tmp_name, 'img/' . $pimage_name);
-    if($result){
-        echo '<script>
-        alert("product inserted")
-        window.location.href="viewpro.php"
-        </script>';
+        }
     }
-
 }
-
-
-?>
-
-</body>
-
-</html>
-
-
-
-
-
-
-
-
-
-
-<?php
-include('includes/footer.php');
-
-
+}
 ?>

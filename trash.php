@@ -11,7 +11,7 @@ include('config.php');
 
     <?php 
     
-    $fetch = "SELECT * from `user`";
+    $fetch = "SELECT * from `user` where `status` = '0' ";
     $fetch_data = mysqli_query($connection, $fetch);
     if ($fetch_data) {
         if (mysqli_num_rows($fetch_data) > 0) {
@@ -22,7 +22,7 @@ include('config.php');
         <div class="row justify-content-center">
 
             <div class="col-xl-10 col-lg-12 col-md-9">
-                <h2>Registerd users</h2>
+                <h2>Trash users</h2>
                 <hr>
             <table class="table table-bordered  table-warning">
                 <div class="container">
@@ -47,7 +47,7 @@ include('config.php');
                     <td><?php echo $row['lname'] ?></td>
                     <td><?php echo $row['email'] ?></td>
                     <td ><a href="update.php?id=<?php echo $row['id'] ?>" class="btn btn-success">Update</a></td>
-                    <td ><a href="trashdata.php?id=<?php echo $row['id'] ?> " class="btn btn-danger">Trash</a></td>
+                    <td ><a href="delete.php?id=<?php echo $row['id'] ?> " class="btn btn-danger">Delete</a></td>
                     
                 </tr>
                 <?php 
@@ -77,17 +77,3 @@ include('config.php');
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-<?php
-include('includes/footer.php');
-       
-?>
